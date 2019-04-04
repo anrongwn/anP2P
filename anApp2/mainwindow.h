@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "anipc_in.h"
+#include "anipc_out.h"
 
 namespace Ui {
 class MainWindow;
@@ -15,8 +17,15 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_pushButton_send_clicked();
+    void on_showMessage(QByteArray data);
+
 private:
     Ui::MainWindow *ui;
+
+    QPointer<anipc_in> in_;
+    QPointer<anipc_out> out_;
 };
 
 #endif // MAINWINDOW_H

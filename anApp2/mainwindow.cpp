@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     out_ = new anipc_out(nullptr);
 
     QObject::connect(in_.operator ->(), &anipc_in::showMessage, this, &MainWindow::on_showMessage);
+
     in_->start();
     out_->start();
 }

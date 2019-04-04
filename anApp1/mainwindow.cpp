@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->textEdit_reciv->setReadOnly(true);
     ui->lineEdit_exe->setText(QString(R"(D:\MyTest\2019_Qt\build-anP2P-Desktop_Qt_5_12_1_MSVC2017_32bit-Debug\anApp2\debug\anApp2.exe)"));
     ui->lineEdit_pa1->setText("wangjr");
 

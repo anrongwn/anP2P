@@ -27,7 +27,7 @@ int anipc_in::start()
     if (!fin_.isNull()) return r;
 
     fin_ = new QFile();
-    if  (!fin_->open(stdin, QIODevice::ReadOnly)) return -1;
+    if  (!fin_->open(stdout, QIODevice::ReadOnly)) return -1;
 
     fin_notifier_ = new QSocketNotifier(fin_->handle(), QSocketNotifier::Read);
     QObject::connect(fin_notifier_.operator ->(), &QSocketNotifier::activated, this, &anipc_in::recivMessage);

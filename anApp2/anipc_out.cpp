@@ -18,7 +18,7 @@ int anipc_out::start()
     if(!fout_.isNull()) return r;
 
     fout_ = new QFile();
-    if (!fout_->open(stdout, QIODevice::WriteOnly)){
+    if (!fout_->open(stdin, QIODevice::WriteOnly)){
         fout_.clear();
         return -1;
     }

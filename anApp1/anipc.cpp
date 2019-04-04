@@ -23,7 +23,10 @@ int anipc::start(const QString &program, const QString &arguments)
     if (!handle_.isNull()) return r;
 
     handle_ = new QProcess();
+    handle_->setProcessChannelMode(QProcess::SeparateChannels);
+    handle_->setReadChannel(QProcess::StandardError);
     QObject::connect(handle_.operator ->(), &QProcess::readyReadStandardOutput, this, &anipc::readAll);
+    QObject::connect(handle_.operator ->(), &QProcess::readyRead, this, &anipc::readAll);
 
     QStringList alist;
     alist.append(arguments);

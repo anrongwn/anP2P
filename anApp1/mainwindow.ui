@@ -105,7 +105,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>PushButton</string>
+      <string>SendMessage</string>
      </property>
     </widget>
     <widget class="QTextEdit" name="textEdit_send">

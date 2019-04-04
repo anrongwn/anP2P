@@ -24,7 +24,7 @@ int anipc::start(const QString &program, const QString &arguments)
 
     handle_ = new QProcess();
     handle_->setProcessChannelMode(QProcess::SeparateChannels);
-    handle_->setReadChannel(QProcess::StandardError);
+    handle_->setReadChannel(QProcess::StandardOutput);
     QObject::connect(handle_.operator ->(), &QProcess::readyReadStandardOutput, this, &anipc::readAll);
     QObject::connect(handle_.operator ->(), &QProcess::readyRead, this, &anipc::readAll);
 

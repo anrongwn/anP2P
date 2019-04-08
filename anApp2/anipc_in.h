@@ -25,7 +25,7 @@ public:
     int start();
 
 private:
-    QPointer<QFile> fin_;
+    //QPointer<QFile> fin_;
     QPointer<QSocketNotifier> fin_notifier_;
 };
 

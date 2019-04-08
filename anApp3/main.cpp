@@ -10,14 +10,18 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    QTextStream in(fileno(stdin));
+    QStringList arg = QCoreApplication::arguments();
+    qDebug() << arg;
 
-    forever{
-        QString data = in.readLine();
-        if (!data.isEmpty()){
-            qDebug() << data;
-        }
-    }
 
-    return a.exec();
+    //QTextStream in(stdin);
+    QTextStream out(stdout,  QIODevice::WriteOnly);
+
+    out <<"i love you!!!"<<endl;
+    out << arg.at(0) <<endl;
+    out << arg.at(1) <<endl;
+
+    a.exec();
+    return 0;
+
 }

@@ -15,6 +15,7 @@ int anipc_out::start()
 {
     int r = 0;
 
+    /*
     if(!fout_.isNull()) return r;
 
     fout_ = new QFile();
@@ -22,6 +23,7 @@ int anipc_out::start()
         fout_.clear();
         return -1;
     }
+    */
 
 
     return r;
@@ -31,6 +33,7 @@ int anipc_out::sendMessge(const QString &data)
 {
     int r = 0;
 
+    /*
     if (fout_.isNull()) return -1;
 
     r = fout_->write(data.toLocal8Bit().constData(), data.length());
@@ -43,6 +46,9 @@ int anipc_out::sendMessge(const QString &data)
             qDebug()<<"===anipc_out::sendMessge["<<data<<"] timeout!";
         }
     }
+    */
+    QTextStream out(stdout,  QIODevice::WriteOnly);
+    out<<data<<endl;
 
     return r;
 }

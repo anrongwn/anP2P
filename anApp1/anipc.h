@@ -22,6 +22,7 @@ signals:
 
 public slots:
     void readAll();
+    void onerrorOccurred(QProcess::ProcessError error);
 
 public:
     int start(const QString &program, const QString &arguments);

@@ -37,6 +37,7 @@ int anipc_out::sendMessge(const QString &data)
     if (r!=-1){
         if (fout_->waitForBytesWritten(5000)){
             qDebug()<<"===anipc_out::sendMessge["<<data<<"] success!";
+            fout_->flush();
         }
         else{
             qDebug()<<"===anipc_out::sendMessge["<<data<<"] timeout!";

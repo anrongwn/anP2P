@@ -22,7 +22,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_showMessage(QByteArray data){
 
-    QString text(data);
+    QString text =QString::fromLocal8Bit(data);//防止中文乱码
 
     ui->textEdit_reciv->append(text);
 }
@@ -40,6 +40,7 @@ void MainWindow::on_pushButton_open_clicked()
 void MainWindow::on_pushButton_send_clicked()
 {
     QString text = ui->textEdit_send->toPlainText();
+    text+="\r\n";
     int r =0;
     r = ipc_->sendMessage(text);
     /*if (r==-1){

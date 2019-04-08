@@ -31,6 +31,7 @@ int anipc_in::start()
 
     fin_notifier_ = new QSocketNotifier(fin_->handle(), QSocketNotifier::Read);
     QObject::connect(fin_notifier_.operator ->(), &QSocketNotifier::activated, this, &anipc_in::recivMessage);
+    fin_notifier_->setEnabled(true);
 
 
     return r;

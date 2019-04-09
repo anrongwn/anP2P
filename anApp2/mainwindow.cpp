@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     out_ = new anipc_out(nullptr);
 
     //QObject::connect(in_.operator ->(), &anipc_in::showMessage, this, &MainWindow::on_showMessage);
-    QObject::connect(&in2_, &anipc_in2::showMessage, this, &MainWindow::on_showMessage);
+    QObject::connect(&in2_, &anipc_in2::showMessage, this, &MainWindow::on_showMessage, Qt::BlockingQueuedConnection);
 
     //in_->start();
     out_->start();
@@ -46,5 +46,6 @@ void MainWindow::on_showMessage(QByteArray data)
     QString text =QString::fromLocal8Bit(data);//防止中文乱码
 
     ui->textEdit_recv->append(text);
+    qDebug()<<"===MainWindow::on_showMessage tid="<<QThread::currentThreadId();
 
 }

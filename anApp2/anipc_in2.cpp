@@ -38,6 +38,7 @@ void anipc_in2::run()
 
         //
         emit showMessage(QByteArray(message, message_len));
+        qDebug()<<"===anipc_in2::run(),emit showMessage tid="<<QThread::currentThreadId();
 
     }
 }

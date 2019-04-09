@@ -50,8 +50,9 @@ int anipc_out::sendMessge(const QString &data)
 
 
     QTextStream out(stdout,  QIODevice::WriteOnly);
-    out << data.toLocal8Bit().constData()<<endl;
-    //out<<data<<endl;
+    out.setCodec("GB18030");
+    //out << data.toLocal8Bit().constData()<<endl;
+    out<<data<<endl;
 
     return r;
 }

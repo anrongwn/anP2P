@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QDataStream>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -42,7 +43,14 @@ void MainWindow::on_pushButton_send_clicked()
     QString text = ui->textEdit_send->toPlainText();
     text+="\r\n";
     int r =0;
-    r = ipc_->sendMessage(text);
+    int len = text.toLocal8Bit().length();
+    QByteArray data;
+    data.append((char*)&len, sizeof(int));
+    data.append(text.toLocal8Bit().data(), text.toLocal8Bit().length());
+
+    //len = data.length();
+
+    r = ipc_->sendMessage(data);
     /*if (r==-1){
         qDebug() << "===MainWindow::on_pushButton_send_clicked()-sendMessage["<<text<<"] failed!";
     }*/

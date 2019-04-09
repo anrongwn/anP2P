@@ -66,13 +66,27 @@ int anipc::start(const QString &program, const QString &arguments)
     return r;
 }
 
-int anipc::sendMessage(const QString &data)
+int anipc::sendMessage(const QByteArray &data)
 {
     int r=0;
 
     if(handle_.isNull()) return -1;
 
-    r = handle_->write(data.toLocal8Bit().constData(), data.length());
+    /*
+    char tmp[6]={0};
+    int len = 1;
+    memcpy(tmp, (void*)&len, sizeof(int));
+    tmp[4]='a';
+
+    QByteArray ba(tmp, 6);
+    len = ba.size();
+    len = ba.length();
+
+    //r = handle_->write(tmp, 6);
+    r = handle_->write(ba.constData(), ba.length());
+    */
+
+    r = handle_->write(data.constData(), data.length());
     if (r!=-1){
         if (handle_->waitForBytesWritten(5000)){
             qDebug()<<"===anipc::sendMessge["<<data<<"] success!";

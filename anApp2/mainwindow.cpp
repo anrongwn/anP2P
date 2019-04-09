@@ -9,18 +9,26 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->textEdit_recv->setReadOnly(true);
 
-    in_ = new anipc_in(nullptr);
+    //in_ = new anipc_in(nullptr);
     out_ = new anipc_out(nullptr);
 
-    QObject::connect(in_.operator ->(), &anipc_in::showMessage, this, &MainWindow::on_showMessage);
+    //QObject::connect(in_.operator ->(), &anipc_in::showMessage, this, &MainWindow::on_showMessage);
+    QObject::connect(&in2_, &anipc_in2::showMessage, this, &MainWindow::on_showMessage);
 
-    in_->start();
+    //in_->start();
     out_->start();
+    in2_.start();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+
+    //
+    in2_.requestInterruption();
+    in2_.terminate();
+
+
 }
 
 void MainWindow::on_pushButton_send_clicked()
@@ -35,7 +43,7 @@ void MainWindow::on_pushButton_send_clicked()
 
 void MainWindow::on_showMessage(QByteArray data)
 {
-    QString text(data);
+    QString text =QString::fromLocal8Bit(data);//防止中文乱码
 
     ui->textEdit_recv->append(text);
 

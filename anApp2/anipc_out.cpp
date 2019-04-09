@@ -47,8 +47,11 @@ int anipc_out::sendMessge(const QString &data)
         }
     }
     */
+
+
     QTextStream out(stdout,  QIODevice::WriteOnly);
-    out<<data<<endl;
+    out << data.toLocal8Bit().constData()<<endl;
+    //out<<data<<endl;
 
     return r;
 }

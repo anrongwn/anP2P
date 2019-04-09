@@ -26,7 +26,7 @@ public slots:
 
 public:
     int start(const QString &program, const QString &arguments);
-    int sendMessage(const QString &data);
+    int sendMessage(const QByteArray &data);
 private:
     QPointer<QProcess> handle_;
 };

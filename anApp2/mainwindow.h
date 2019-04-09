@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "anipc_in.h"
 #include "anipc_out.h"
+#include "anipc_in2.h"
 
 namespace Ui {
 class MainWindow;
@@ -26,6 +27,9 @@ private:
 
     QPointer<anipc_in> in_;
     QPointer<anipc_out> out_;
+
+    anipc_in2 in2_;
+
 };
 
 #endif // MAINWINDOW_H

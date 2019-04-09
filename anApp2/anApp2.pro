@@ -29,12 +29,14 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     anipc_in.cpp \
-    anipc_out.cpp
+    anipc_out.cpp \
+    anipc_in2.cpp
 
 HEADERS += \
         mainwindow.h \
     anipc_in.h \
-    anipc_out.h
+    anipc_out.h \
+    anipc_in2.h
 
 FORMS += \
         mainwindow.ui

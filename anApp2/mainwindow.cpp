@@ -17,6 +17,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //in_->start();
     out_->start();
+
+    //
+    in2_.moveToThread(&in2_);
     in2_.start();
 }
 

@@ -27,7 +27,7 @@ MainWindow::~MainWindow()
     //
     in2_.requestInterruption();
     in2_.terminate();
-
+    in2_.wait();
 
 }
 

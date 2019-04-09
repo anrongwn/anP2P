@@ -22,6 +22,12 @@ void anipc::onerrorOccurred(QProcess::ProcessError error)
     qDebug()<<"===anipc::onerrorOccurred" << error;
 }
 
+void anipc::onfinished(int exitCode, QProcess::ExitStatus exitStatus)
+{
+    qDebug()<<"===anipc::onfinished"<<exitCode<<","<<exitStatus;
+    handle_.clear();
+}
+
 
 int anipc::start(const QString &program, const QString &arguments)
 {
@@ -49,6 +55,7 @@ int anipc::start(const QString &program, const QString &arguments)
     QObject::connect(handle_.operator ->(), &QProcess::errorOccurred, this, &anipc::onerrorOccurred);
     QObject::connect(handle_.operator ->(), &QProcess::readyReadStandardOutput, this, &anipc::readAll);
     QObject::connect(handle_.operator ->(), &QProcess::readyRead, this, &anipc::readAll);
+    QObject::connect(handle_.operator ->(), QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this, &anipc::onfinished);
 
     QStringList alist;
     alist.append(arguments);

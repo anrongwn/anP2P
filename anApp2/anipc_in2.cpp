@@ -9,10 +9,13 @@ anipc_in2::anipc_in2(QObject *parent) : QThread(parent)
 
 void anipc_in2::run()
 {
+    //AllocConsole();
     HANDLE hStdin = INVALID_HANDLE_VALUE;
     hStdin = ::GetStdHandle(STD_INPUT_HANDLE);
+    //hStdin = ::CreateFileA("CONIN$",GENERIC_READ,FILE_SHARE_READ,0,OPEN_EXISTING,0,0);
+
     if (INVALID_HANDLE_VALUE==hStdin){
-        qDebug()<<"===GetStdHandle(STD_INPUT_HANDLE)=INVALID_HANDLE_VALUE";
+        qDebug()<<"===GetStdHandle(STD_INPUT_HANDLE)=INVALID_HANDLE_VALUE"<<::GetLastError();
         return;
     }
 
@@ -41,6 +44,8 @@ void anipc_in2::run()
         qDebug()<<"===anipc_in2::run(),emit showMessage tid="<<QThread::currentThreadId();
 
     }
+
+    ::CloseHandle(hStdin);
 }
 
 
